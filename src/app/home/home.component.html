@@ -1,0 +1,63 @@
+<header class="header">
+    <h1>Property Management System</h1>
+</header>
+<main>
+    <button class="btn btn-blue" (click)="modalToggle()">Add New Property</button>
+    <section class="table-sec"> 
+        <table>
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Name</th>
+                    <th>Descriptipn</th>
+                    <th>Size</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of propertyList">
+                    <td>
+                        <button class="btn btn-red" (click)="onDelete(p.propertyId)">Delete</button>
+                        <!-- <button class="btn btn-green" (click)="onDelete(p.propertyId)">Update</button> -->
+                    </td>
+                    <td>{{p.propertyName}}</td>
+                    <td>{{p.propertyDescription}}</td>
+                    <td>{{p.propertySize}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<!-- modal box -->
+<div class="modal d-none" #modal>
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3>Add Property</h3>
+        </div>
+        <hr>
+        <div class="modal-body">
+            <form #modalForm="ngForm" (ngSubmit)="onSubmit(modalForm)">
+               <div class="form-contain">
+                <div class="form-group">
+                    <label>Enter Property Name</label>
+                    <input type="text" class="form-control" name="name" ngModel>
+                </div>
+                <div class="form-group">
+                    <label>Enter Property Descriptipn</label>
+                    <textarea rows="3" class="form-control" name="description" ngModel>
+                        </textarea>
+                </div>
+                <div class="form-group">
+                    <label>Enter Property size</label>
+                    <input type="number" class="form-control" name="size" ngModel>
+                </div>
+            </div>
+                <hr>
+                <div class="btn-group">
+                    <button class="btn btn-green" type="submit">Submit</button>
+                    <button class="btn btn-pink" (click)="modalToggle()" type="button">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
